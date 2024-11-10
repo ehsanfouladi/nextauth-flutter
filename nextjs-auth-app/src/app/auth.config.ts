@@ -1,5 +1,6 @@
 import type { NextAuthConfig } from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
+// import GoogleProvider from 'next-auth/providers/google';
+import KeycloakProvider from "next-auth/providers/keycloak";
 
 export const authConfig = {
   callbacks: {
@@ -9,9 +10,10 @@ export const authConfig = {
     },
   },
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    }),
+    KeycloakProvider({
+      clientId: 'public-mobile',
+      clientSecret:'',
+      issuer: 'https://test.shamsiran.com/realms/identity',
+    })
   ],
 } satisfies NextAuthConfig;
